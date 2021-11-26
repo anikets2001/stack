@@ -1,0 +1,86 @@
+//program to implement queue using array by two pointers
+#include<iostream>
+using namespace std;
+
+
+struct Queue
+{
+    int size;
+    int front;
+    int rear;
+    int *Q;
+};
+
+//function to create the queue 
+void create(struct Queue *q,int size)
+{
+    q->size=size;
+    q->front=-1;
+    q->rear=-1;
+    q->Q=(int *)malloc(q->size*sizeof(int));         //memory allocation for queue
+}
+
+//function to insert element in the queue
+void enqueue(struct Queue *q, int x){
+    if(q->rear == q->size-1)
+		printf("Queue is full\n");
+	else{
+		q->rear ++;
+		q->Q[q->rear] =x;
+	}
+}
+
+//function to delete the element from the queue
+int dequeue(struct Queue *q)
+{
+    int x=-1;
+    
+    if(q->front==q->rear)
+      cout<<"QUEUE IS EMPTY"<<endl;
+    else
+    {
+        
+        x=q->Q[q->front];
+        q->front++;
+    }
+    return x;
+}
+
+//function to display the queue
+void display(struct Queue q)
+{
+    int i;
+    for(i=q.front+1;i<=q.rear;i++)
+    {
+        cout<<q.Q[i]<<" ";
+    }
+    cout<<endl;
+}
+
+//main function
+int main()
+{
+    struct Queue q;
+    create(&q,5);
+    
+    cout<<"QUEUE:"<<endl;
+    enqueue(&q,10);
+    enqueue(&q,20);
+    enqueue(&q,30);
+    
+    display(q);
+    
+    dequeue(&q);
+    
+    cout<<"QUEUE after dequeue:"<<endl;
+    display(q);
+}    
+    
+    
+    
+    
+    
+    
+    
+    
+    
